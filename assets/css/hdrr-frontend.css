@@ -1,0 +1,4 @@
+.hdrr-request-form,
+.woocommerce-order-details + form {
+    margin-top: 1.5em;
+}
