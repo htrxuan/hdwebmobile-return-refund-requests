@@ -16,12 +16,12 @@ Let customers request a return or refund on their own orders -- server-computed 
 
 HDWebmobile Return & Refund Requests adds a "Request a Return or Refund" option to a customer's completed orders, within a return window you configure. You review each request and, if you approve it, the plugin issues a real WooCommerce refund for the order's own exact remaining amount.
 
-= Why this plugin exists =
-The "Return Refund and Exchange" family of competing WooCommerce plugins has had two serious, separately-disclosed vulnerabilities: CVE-2024-13692, an Insecure Direct Object Reference that let an unauthenticated attacker overwrite another customer's refund request message, overwrite their linked refund image, and read their private order messages, because several endpoints trusted a user-controlled key with no ownership check at all; and CVE-2025-6222, an unauthenticated file-upload endpoint that allowed full remote code execution. This plugin closes both vulnerability classes by construction:
+= Security by design =
+Two vulnerability classes are common in return and refund tools: Insecure Direct Object References, where endpoints trust a user-controlled key with no ownership check -- letting an unauthenticated attacker overwrite another customer's refund request or read their private order messages -- and unauthenticated file-upload endpoints that allow full remote code execution. This plugin closes both vulnerability classes by construction:
 
 * Every return request is looked up and scoped by the real, currently-authenticated customer's own id at the database query itself -- never by trusting a request id or key alone to imply ownership. A request that exists but belongs to someone else is indistinguishable from one that doesn't exist at all.
 * A request's owner is set exactly once, at creation, derived directly from the real WooCommerce order object's own customer id -- never from a value read out of the request.
-* There is no file upload anywhere in this plugin. A return reason is a fixed dropdown plus a plain text note -- the vulnerable code path from CVE-2025-6222 simply has no equivalent feature to exist in here at all.
+* There is no file upload anywhere in this plugin. A return reason is a fixed dropdown plus a plain text note -- there is no upload feature for that vulnerability class to exist in at all.
 * When you approve a request, the refund amount is always computed fresh from the order's own remaining refundable total -- there is no field anywhere that accepts a refund amount from a request.
 
 = Key Features =
