@@ -34,6 +34,9 @@ Two vulnerability classes are common in return and refund tools: Insecure Direct
 * No photo/file evidence upload in this version -- see "Why this plugin exists" above for why
 * Whole-order returns only in this version -- no per-line-item partial returns yet
 
+= Enjoying this plugin? =
+If it helps your site, please consider [leaving an honest review on WordPress.org](https://wordpress.org/support/plugin/hdwebmobile-return-refund-requests/reviews/#new-post) -- it helps other WordPress users find it. Found a problem or have an idea? Please [open a support topic](https://wordpress.org/support/plugin/hdwebmobile-return-refund-requests/) first so it can be fixed.
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/hdwebmobile-return-refund-requests` directory, or install the plugin through the WordPress plugins screen directly.
